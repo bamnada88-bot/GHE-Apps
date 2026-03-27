@@ -1,4 +1,4 @@
-name: Flutter Production Build
+name: Flutter Full CI/CD
 
 on:
   push:
@@ -12,48 +12,43 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 🚀 Flutter Setup
+      # Flutter Setup
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.22.0'
           cache: true
 
-      # ⚡ Cache إضافي (سرعة)
-      - name: Cache pub
-        uses: actions/cache@v4
-        with:
-          path: ~/.pub-cache
-          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
+      # Fix dependencies تلقائي
+      - name: Upgrade dependencies
+        run: flutter pub upgrade --major-versions
 
-      # 📦 Install Dependencies
+      # Install
       - name: Install dependencies
         run: flutter pub get
 
-      # 🔍 Analyze
+      # Analyze
       - name: Analyze
         run: flutter analyze
 
-      # 🔐 Decode Keystore
-      - name: Decode keystore
-        run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/upload-keystore.jks
-
-      # 📝 Create key.properties
-      - name: Create key.properties
-        run: |
-          echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" > android/key.properties
-          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
-          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/key.properties
-          echo "storeFile=upload-keystore.jks" >> android/key.properties
-
-      # 🏗️ Build APK
+      # Build APK
       - name: Build APK
         run: flutter build apk --release
 
-      # 📤 Upload Artifact
+      # Build AAB (Play Store)
+      - name: Build App Bundle
+        run: flutter build appbundle --release
+
+      # Upload APK
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-release
+          name: apk
           path: build/app/outputs/flutter-apk/app-release.apk
+
+      # Upload AAB
+      - name: Upload AAB
+        uses: actions/upload-artifact@v4
+        with:
+          name: aab
+          path: build/app/outputs/bundle/release/app-release.aab
