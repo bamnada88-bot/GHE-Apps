@@ -1,0 +1,84 @@
+/* Grades.css */
+.grades-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.terms-selector {
+  display: flex;
+  gap: 1rem;
+  background: white;
+  padding: 0.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  width: fit-content;
+}
+
+.term-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: transparent;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.term-btn.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+.grades-table-container {
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.grades-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.grades-table th, .grades-table td {
+  padding: 1.25rem 1.5rem;
+  text-align: left;
+}
+
+.grades-table th {
+  background-color: #f8fafc;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.grades-table tr {
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.grades-table tr:last-child {
+  border-bottom: none;
+}
+
+.subject-cell {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.comments-cell {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.grade-badge {
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  font-size: 0.9rem;
+  display: inline-block;
+  min-width: 40px;
+  text-align: center;
+}

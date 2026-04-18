@@ -1,0 +1,99 @@
+/* Behavior.css */
+.behavior-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.points-balance {
+  color: #22c55e;
+  font-size: 1.2rem;
+}
+
+.timeline-container {
+  position: relative;
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  left: 31px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #e2e8f0;
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.timeline-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 2;
+  box-shadow: 0 0 0 4px #f8fafc;
+  flex-shrink: 0;
+}
+
+.timeline-item.positive .timeline-icon {
+  background-color: #22c55e;
+}
+
+.timeline-item.negative .timeline-icon {
+  background-color: #ef4444;
+}
+
+.timeline-content {
+  flex: 1;
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid #f1f5f9;
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.log-date {
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.log-points {
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.log-points.positive { color: #22c55e; }
+.log-points.negative { color: #ef4444; }
+
+.log-reason {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+
+.log-teacher {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  background: #f1f5f9;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-md);
+}
